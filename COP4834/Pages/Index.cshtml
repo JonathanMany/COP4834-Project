@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Resume Builder"] = "COP4834";
+}
+
+<div class="jumbotron jumbotron-fluid">
+    <center><h1>COP4834 Resume Help & Builder</h1></center>
+    <center><p class="lead">Created and published by John Many & Genifer Rock</p></center>
+</div>
+<br />
+
+<form action="/action_page.php">
+    <label for="fname">First Name:</label><br>
+    <input type="text" id="fname" name="fname"<br><br><br>
+
+    <label for="lname">Last Name:</label><br>
+    <input type="text" id="lname" name="lname"<br><br><br>
+
+    <label for="birthdaytime">Birthday:</label><br>
+    <input type="datetime-local" id="birthdaytime" name="birthdaytime"><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"><br><br>
+</form>
