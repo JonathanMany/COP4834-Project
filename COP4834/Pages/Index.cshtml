@@ -1,28 +1,155 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Resume Builder"] = "COP4834";
 }
 
-<div class="jumbotron jumbotron-fluid">
-    <center><h1>COP4834 Resume Help & Builder</h1></center>
-    <center><p class="lead">Created and published by John Many & Genifer Rock</p></center>
-</div>
-<br />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<form action="/action_page.php">
-    <label for="fname">First Name:</label><br>
-    <input type="text" id="fname" name="fname"<br><br><br>
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+        crossorigin="anonymous"
+        />
 
-    <label for="lname">Last Name:</label><br>
-    <input type="text" id="lname" name="lname"<br><br><br>
+        <link rel="stylesheet" href="style.css" />
+        <title>Resume Generator</title>
+    </head>
 
-    <label for="birthdaytime">Birthday:</label><br>
-    <input type="datetime-local" id="birthdaytime" name="birthdaytime"><br><br>
+    <body>
+    <div class="container">
+        <h1 class="text-center my-2">Resume Generator</h1>
+        <p class="text-center">Creared by John Many & Genifer Rock</p>
 
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email"><br><br>
+        <div class="row">
 
-    <label for="phone">Phone Number:</label><br>
-    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"><br><br>
-</form>
+            <div class="col-md-6">
+                <!--first column-->
+                <h3>Personal Information</h3>
+                <!--PERSONAL INFORMATION-->
+                <div class="form-group">
+                    <label for="nameField">First & Last Name</label>
+                    <input 
+                        type="text" 
+                        id="nameField" 
+                        placeholder="Enter Your Name Here" 
+                        class="form-control" />
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="nameField">Phone Number</label>
+                    <input 
+                        type="text" 
+                        id="phoneField" 
+                        placeholder="Enter Your Phone Number Here" 
+                        class="form-control" />
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="birthdayField">Birthday</label>
+                    <input type="date"
+                           id="phoneField"
+                           placeholder="Enter Your Phone Number Here"
+                           class="form-control" />
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="addressField">Your Address</label>
+                    <textarea
+                        id="addressField"
+                        placeholder="Enter Your Address Here"
+                        class="form-control"
+                        rows="5"                   
+                    ></textarea>
+                </div>
+                <!--PERSONAL INFORMATION-->
+
+                <h3>Useful Links</h3>
+                <!--LINKS-->
+                <div class="form-group">
+                    <label for="facebookField">Facebook</label>
+                    <input 
+                        type="text" 
+                        id="facebookField" 
+                        placeholder="Link" 
+                        class="form-control" />
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="githubField">Github</label>
+                    <input 
+                        type="text" 
+                        id="githubField" 
+                        placeholder="Link" 
+                        class="form-control" />
+                </div>
+
+                <div class="form-group mt-2">
+                    <label for="linkedinField">LinkedIn</label>
+                    <input 
+                        type="text" 
+                        id="linkedinField" 
+                        placeholder="Link" 
+                        class="form-control" />
+                </div>
+                <!--LINKS-->
+
+
+            </div>
+            <div class="col-md-6">
+                <!--second column-->
+                <h3>Career & Professional Information</h3>
+
+                <div class="form-group mt-2">
+                    <label for="objectiveField">Objective/Pitch</label>
+                    <textarea
+                        id="objField"
+                        placeholder="Enter Text"
+                        class="form-control"
+                        rows="5"                   
+                    ></textarea>
+
+                <div class="form-group mt-2" id="we">
+                    <label for="workField">Work Expereince</label>
+                    <textarea
+                        placeholder="Enter Text" 
+                        class="form-control weField"
+                        rows ="3"></textarea>
+                </div>
+
+                <div class="container text-center mt-2" id="weAddButton">
+                        <button onclick="addNewWeField()" class="btn btn-primary btn-sm">Add</button>
+                </div>
+
+                    <div class="form-group mt-2">
+                        <label for="workField">Academic Expereince</label>
+                        <textarea 
+                            placeholder="Enter Text"
+                            class="form-control eqField"
+                            rows ="3"></textarea>
+                    </div>
+
+                    <div class="container text-center mt-2" id="eqAddButton">
+                        <button class="btn btn-primary btn-sm">Add</button>
+                    </div>
+            </div>
+        </div>
+        <div class="container text-center mt-3">
+            <button class="btn btn-primary btn-lg">Generate CV</button>
+        </div>
+    </div>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+        crossorigin="anonymous">
+    </script>
+    <script src="script.js"></script>
+    </body>
+</html>
