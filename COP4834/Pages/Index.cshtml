@@ -115,19 +115,18 @@
                         rows="5"                   
                     ></textarea>
 
-                <div class="form-group mt-2" id="we">
-                    <label for="workField">Work Expereince</label>
-                    <textarea
-                        placeholder="Enter Text" 
-                        class="form-control weField"
-                        rows ="3"></textarea>
-                </div>
+                    <div class="form-group mt-2" id="we">
+                        <label for="workField">Work Expereince</label>
+                        <textarea placeholder="Enter Text"
+                                  class="form-control weField"
+                                  rows="3"></textarea>
+                    </div>
 
-                <div class="container text-center mt-2" id="weAddButton">
+                    <div class="container text-center mt-2" id="weAddButton">
                         <button onclick="addNewWeField()" class="btn btn-primary btn-sm">Add</button>
-                </div>
+                    </div>
 
-                    <div class="form-group mt-2">
+                    <div class="form-group mt-2" id="eq">
                         <label for="workField">Academic Expereince</label>
                         <textarea 
                             placeholder="Enter Text"
@@ -136,7 +135,7 @@
                     </div>
 
                     <div class="container text-center mt-2" id="eqAddButton">
-                        <button class="btn btn-primary btn-sm">Add</button>
+                        <button onclick="addNewEqField()" class="btn btn-primary btn-sm">Add</button>
                     </div>
             </div>
         </div>
@@ -145,11 +144,42 @@
         </div>
     </div>
 
+
+
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
         crossorigin="anonymous">
     </script>
-    <script src="script.js"></script>
+
+
+    <!-- Added function direclty into index.html because the reference was not working properly-->
+        <script>
+            function addNewWeField() {
+                let newNode = document.createElement('textarea');
+                newNode.classList.add('form-control');
+                newNode.classList.add('weField');
+                newNode.classList.add("mt-2");
+                newNode.setAttribute("rows", 3);
+                newNode.setAttribute('placeholder', 'Text Here')
+
+                let weAddButtonOb = document.getElementById('weAddButton');
+
+                weAddButtonOb.before(newNode);
+            }</script>
+
+        <script>
+            function addNewEqField() {
+                let newNode = document.createElement('textarea');
+                newNode.classList.add('form-control');
+                newNode.classList.add('eqField');
+                newNode.classList.add("mt-2");
+                newNode.setAttribute("rows", 3);
+                newNode.setAttribute('placeholder', 'Text Here')
+
+                let eqAddButtonOb = document.getElementById('eqAddButton');
+
+                eqAddButtonOb.before(newNode);
+            }</script>
     </body>
 </html>
