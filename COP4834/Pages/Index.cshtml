@@ -1,31 +1,6 @@
-@page
-@model IndexModel
-@{
-    ViewData["Resume Builder"] = "COP4834";
-}
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
-        crossorigin="anonymous"
-        />
-
-        <link rel="stylesheet" href="style.css" />
-        <title>Resume Generator</title>
-    </head>
-
-    <body>
-    <div class="container">
+<div class="container">
         <h1 class="text-center my-2">Resume Generator</h1>
-        <p class="text-center">Creared by John Many & Genifer Rock</p>
+        <p class="text-center">Created by John Many & Genifer Rock</p>
 
         <div class="row">
 
@@ -43,7 +18,7 @@
                 </div>
 
                 <div class="form-group mt-2">
-                    <label for="nameField">Phone Number</label>
+                    <label for="phoneField">Phone Number</label>
                     <input 
                         type="text" 
                         id="phoneField" 
@@ -54,8 +29,8 @@
                 <div class="form-group mt-2">
                     <label for="birthdayField">Birthday</label>
                     <input type="date"
-                           id="phoneField"
-                           placeholder="Enter Your Phone Number Here"
+                           id="birthdayField"
+                           placeholder="YYYY/MM/DD"
                            class="form-control" />
                 </div>
 
@@ -109,14 +84,14 @@
                 <div class="form-group mt-2">
                     <label for="objectiveField">Objective/Pitch</label>
                     <textarea
-                        id="objField"
+                        id="objectiveField"
                         placeholder="Enter Text"
                         class="form-control"
                         rows="5"                   
                     ></textarea>
 
                     <div class="form-group mt-2" id="we">
-                        <label for="workField">Work Expereince</label>
+                        <label for="weField">Work Experience</label>
                         <textarea placeholder="Enter Text"
                                   class="form-control weField"
                                   rows="3"></textarea>
@@ -127,15 +102,15 @@
                     </div>
 
                     <div class="form-group mt-2" id="eq">
-                        <label for="workField">Academic Expereince</label>
+                        <label for="aeField">Academic Experience</label>
                         <textarea 
                             placeholder="Enter Text"
-                            class="form-control eqField"
+                            class="form-control aeField"
                             rows ="3"></textarea>
                     </div>
 
-                    <div class="container text-center mt-2" id="eqAddButton">
-                        <button onclick="addNewEqField()" class="btn btn-primary btn-sm">Add</button>
+                    <div class="container text-center mt-2" id="aeAddButton">
+                        <button onclick="addNewAeField()" class="btn btn-primary btn-sm">Add</button>
                     </div>
             </div>
         </div>
@@ -144,42 +119,3 @@
         </div>
     </div>
 
-
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
-        crossorigin="anonymous">
-    </script>
-
-
-    <!-- Added function direclty into index.html because the reference was not working properly-->
-        <script>
-            function addNewWeField() {
-                let newNode = document.createElement('textarea');
-                newNode.classList.add('form-control');
-                newNode.classList.add('weField');
-                newNode.classList.add("mt-2");
-                newNode.setAttribute("rows", 3);
-                newNode.setAttribute('placeholder', 'Text Here')
-
-                let weAddButtonOb = document.getElementById('weAddButton');
-
-                weAddButtonOb.before(newNode);
-            }</script>
-
-        <script>
-            function addNewEqField() {
-                let newNode = document.createElement('textarea');
-                newNode.classList.add('form-control');
-                newNode.classList.add('eqField');
-                newNode.classList.add("mt-2");
-                newNode.setAttribute("rows", 3);
-                newNode.setAttribute('placeholder', 'Text Here')
-
-                let eqAddButtonOb = document.getElementById('eqAddButton');
-
-                eqAddButtonOb.before(newNode);
-            }</script>
-    </body>
-</html>
