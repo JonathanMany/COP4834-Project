@@ -1,1 +1,39 @@
-Test
+SQL
+CREATE TABLE [dbo].[PersonalInfo] (
+    [ID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    [Name] NVARCHAR(75) NOT NULL, 
+    [PhoneNumber] NVARCHAR(15) NOT NULL, 
+    [Birthday] DATE NOT NULL, 
+    [Address] NVARCHAR(120) NOT NULL
+)
+
+CREATE TABLE [dbo].[Links] (
+    [ID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    [UserID] INT NULL,
+    [Facebook] NVARCHAR(MAX) NULL, 
+    [Github] NVARCHAR(MAX) NULL, 
+    [LinkedIn] NVARCHAR(MAX) NULL, 
+    FOREIGN KEY (UserID) REFERENCES PersonalInfo(ID)
+)
+
+CREATE TABLE [dbo].[Career] (
+    [ID] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
+    [UserID] INT NULL, 
+    [Objective] NVARCHAR(MAX) NOT NULL, 
+    FOREIGN KEY (UserID) REFERENCES PersonalInfo(ID)
+)
+
+CREATE TABLE [dbo].[WorkExp] (
+    [ID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    [CareerID] INT NOT NULL, 
+    [WorkExperience] NVARCHAR(MAX) NOT NULL
+    FOREIGN KEY (CareerID) REFERENCES Career(ID)
+)
+
+CREATE TABLE [dbo].[AcademicExp] (
+    [ID] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    [CareerID] INT NOT NULL, 
+    [AcademicExperience] NVARCHAR(MAX) NOT NULL
+    FOREIGN KEY (CareerID) REFERENCES Career(ID)
+)
+
