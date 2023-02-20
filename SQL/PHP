@@ -1,0 +1,153 @@
+<?php
+// Connect to the database
+$host = 'database_host';
+$username = 'database_username';
+$password = 'database_password';
+$dbname = 'database_name';
+
+$conn = new mysqli($host, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the forum submission from the form
+
+// Personal Information
+$forum_name = $_POST['nameField'];
+$forum_phone = $_POST['phoneField'];
+$forum_birthday = $_POST['birthdayField'];
+$forum_address = $_POST['addressField'];
+
+// Helpful Links
+$forum_facebook = $_POST['facebookField'];
+$forum_github = $_POST['githubField'];
+$forum_linkedin = $_POST['linkedinField'];
+
+// Experience
+$forum_objective = $_POST['objectiveField'];
+$forum_work = $_POST['weField'];
+$forum_academics = $_POST['aeField'];
+
+// Prepare the HTML content for insertion into the database
+
+// Personal Information
+$escaped_forum_name = mysqli_real_escape_string($conn, $forum_name);
+$escaped_forum_phone = mysqli_real_escape_string($conn, $forum_phone);
+$escaped_forum_birthday = mysqli_real_escape_string($conn, $forum_birthday);
+$escaped_forum_address = mysqli_real_escape_string($conn, $forum_address);
+
+// Helpful Links
+$escaped_forum_facebook = mysqli_real_escape_string($conn, $forum_facebook);
+$escaped_forum_github = mysqli_real_escape_string($conn, $forum_github);
+$escaped_forum_linkedin = mysqli_real_escape_string($conn, $forum_linkedin);
+
+// Experience
+$escaped_forum_objective = mysqli_real_escape_string($conn, $forum_objective);
+$escaped_forum_work = mysqli_real_escape_string($conn, $forum_work);
+$escaped_forum_academics = mysqli_real_escape_string($conn, $forum_academics);
+
+// Insert the forum submission into the database
+
+$sql = "
+SET IDENTITY_INSERT PersonalInfo ON
+INSERT INTO PersonalInfo (Name) VALUES ('$escaped_forum_name')
+INSERT INTO PersonalInfo (Phone) VALUES ('$escaped_forum_phone')
+INSERT INTO PersonalInfo (Birthday) VALUES ('$escaped_forum_birthday')
+INSERT INTO PersonalInfo (Address) VALUES ('$escaped_forum_address')
+SET IDENTITY_INSERT PersonalInfo OFF
+
+SET IDENTITY_INSERT Links ON
+IF '$escaped_forum_facebook' = NOT NULL 
+    OR '$escaped_forum_github' = NOT NULL
+    OR '$escaped_forum_linkedin' = NOT NULL
+BEGIN
+    IF '$escaped_forum_facebook' = NOT NULL 
+       AND '$escaped_forum_github' = NULL
+       AND '$escaped_forum_linkedin' = NULL
+    BEGIN
+    SET IDENTITY_INSERT Links ON
+    INSERT INTO Links (Facebook) VALUES ('$escaped_forum_facebook')
+    SET IDENTITY_INSERT Links OFF
+    END
+    ELSE IF '$escaped_forum_facebook' = NULL 
+       AND '$escaped_forum_github' = NOT NULL
+       AND '$escaped_forum_linkedin' = NULL
+    BEGIN
+    SET IDENTITY_INSERT Links ON
+    INSERT INTO Links (Github) VALUES ('$escaped_forum_github')
+    SET IDENTITY_INSERT Links OFF
+    END
+    ELSE IF '$escaped_forum_facebook' = NULL 
+       AND '$escaped_forum_github' = NULL
+       AND '$escaped_forum_linkedin' = NOT NULL
+    BEGIN
+    SET IDENTITY_INSERT Links ON
+    INSERT INTO Links (LinkedIn) VALUES ('$escaped_forum_linkedin')
+    SET IDENTITY_INSERT Links OFF
+    END
+    ELSE IF '$escaped_forum_facebook' = NOT NULL 
+       AND '$escaped_forum_github' = NOT NULL
+       AND '$escaped_forum_linkedin' = NULL
+    BEGIN
+    SET IDENTITY_INSERT Links ON
+    INSERT INTO Links (Facebook) VALUES ('$escaped_forum_facebook')
+    INSERT INTO Links (Github) VALUES ('$escaped_forum_github')
+    SET IDENTITY_INSERT Links OFF
+    END
+    ELSE IF '$escaped_forum_facebook' = NOT NULL 
+       AND '$escaped_forum_github' = NULL
+       AND '$escaped_forum_linkedin' = NOT NULL
+    BEGIN
+    SET IDENTITY_INSERT Links ON
+    INSERT INTO Links (Facebook) VALUES ('$escaped_forum_facebook')
+    INSERT INTO Links (LinkedIn) VALUES ('$escaped_forum_linkedin')
+    SET IDENTITY_INSERT Links OFF
+    END
+    ELSE IF '$escaped_forum_facebook' = NULL 
+       AND '$escaped_forum_github' = NOT NULL
+       AND '$escaped_forum_linkedin' = NOT NULL
+    BEGIN
+    SET IDENTITY_INSERT Links ON
+    INSERT INTO Links (Github) VALUES ('$escaped_forum_github')
+    INSERT INTO Links (LinkedIn) VALUES ('$escaped_forum_linkedin')
+    SET IDENTITY_INSERT Links OFF
+    END
+    ELSE IF '$escaped_forum_facebook' = NOT NULL 
+       AND '$escaped_forum_github' = NOT NULL
+       AND '$escaped_forum_linkedin' = NOT NULL
+    BEGIN
+    SET IDENTITY_INSERT Links ON
+    INSERT INTO Links (Facebook) VALUES ('$escaped_forum_facebook')
+    INSERT INTO Links (Github) VALUES ('$escaped_forum_github')
+    INSERT INTO Links (LinkedIn) VALUES ('$escaped_forum_linkedin')
+    SET IDENTITY_INSERT Links OFF
+    END
+END
+
+SET IDENTITY_INSERT Career ON
+INSERT INTO Career (Objective) VALUES ('$escaped_forum_objective')
+DECLARE @CareerID = @@IDENTITY
+SET IDENTITY_INSERT Career OFF
+
+SET IDENTITY_INSERT WorkExp ON
+INSERT INTO WorkExp (CareerID) VALUES (@CareerID)
+INSERT INTO WorkExp (WorkExperience) VALUES ('$escaped_forum_work')
+SET IDENTITY_INSERT WorkExp OFF
+
+SET IDENTITY_INSERT AcademicExp ON
+INSERT INTO AcademicExp (CareerID) VALUES (@CareerID)
+INSERT INTO AcademicExp (AcademicExperience) VALUES ('$escaped_forum_academics')
+SET IDENTITY_INSERT AcademicExp OFF
+
+GO";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Forum submission saved successfully";
+} else {
+  echo "Error: <br>" . $conn->error;
+}
+
+$conn->close();
+?>
