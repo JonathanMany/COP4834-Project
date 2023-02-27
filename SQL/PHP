@@ -1,9 +1,9 @@
 <?php
 // Connect to the database
-$host = 'database_host';
-$username = 'database_username';
+$host = L00000002FGT5D3;
+$username = NASCAR\jmany;
 $password = 'database_password';
-$dbname = 'database_name';
+$dbname = WebSystems;
 
 $conn = new mysqli($host, $username, $password, $dbname);
 
