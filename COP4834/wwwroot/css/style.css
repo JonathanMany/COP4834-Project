@@ -1,0 +1,16 @@
+#cv-form {
+    /*display: none;*/
+}
+#cv-template{
+    display: none;
+}
+.myimg{
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 300px;
+    height: 200px
+}
+
+.background{
+    background-color:lightblue;
+}
