@@ -18,7 +18,8 @@
         crossorigin="anonymous"
         />
 
-    <link rel="stylesheet" type="text/css" href="C:\Users\jmany\source\repos\COP4834\COP4834\Pages\style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+
         <title>Resume Generator</title>
     </head>
     <body>
@@ -46,17 +47,9 @@
                     <label for="nameField">Phone Number</label>
                     <input 
                         type="text" 
-                        id="phoneField" 
+                        id="contactField" 
                         placeholder="Enter Your Phone Number Here" 
                         class="form-control" />
-                </div>
-
-                <div class="form-group mt-2">
-                    <label for="birthdayField">Birthday</label>
-                    <input type="date"
-                           id="phoneField"
-                           placeholder="Enter Your Phone Number Here"
-                           class="form-control" />
                 </div>
 
                 <div class="form-group mt-2">
@@ -69,6 +62,12 @@
                     ></textarea>
                 </div>
                 <!--PERSONAL INFORMATION-->
+
+                <div class="form-group">
+                    <label for"">Upload Photo</label>
+                    <input id="imgField" type="file" class="form-control"/>
+                </div>
+
 
                 <h3>Useful Links</h3>
                 <!--LINKS-->
@@ -107,85 +106,100 @@
                 <h3>Career & Professional Information</h3>
 
                 <div class="form-group mt-2">
-                    <label for="objectiveField">Objective/Pitch</label>
-                    <textarea
-                        id="objField"
-                        placeholder="Enter Text"
-                        class="form-control"
-                        rows="5"                   
-                    ></textarea>
+                    <label for="">Objective/Pitch</label>
+                    <textarea id="objectiveField" placeholder="Enter Text" class="form-control" rows="5"></textarea>
+                </div>
 
-                    <div class="form-group mt-2" id="we">
-                        <label for="workField">Work Expereince</label>
-                        <textarea placeholder="Enter Text"
-                                  class="form-control weField"
-                                  rows="3"></textarea>
-                    </div>
+                <div class="form-group mt-2" id="we">
+                    <label for="workField">Work Expereince</label>
+                    <textarea placeholder="Enter Text" class="form-control weField" rows="3"></textarea>
+                </div>
 
-                    <div class="container text-center mt-2" id="weAddButton">
-                        <button onclick="addNewWeField()" class="btn btn-primary btn-sm">Add</button>
-                    </div>
+                <div class="container text-center mt-2" id="weAddButton">
+                    <button onclick="addNewWeField()" class="btn btn-primary btn-sm">Add</button>
+                </div>
 
-                    <div class="form-group mt-2" id="eq">
-                        <label for="workField">Academic Expereince</label>
-                        <textarea 
-                            placeholder="Enter Text"
-                            class="form-control eqField"
-                            rows ="3"></textarea>
-                    </div>
+                <div class="form-group mt-2" id="eq">
+                    <label for="workField">Academic Expereince</label>
+                    <textarea placeholder="Enter Text" class="form-control eqField" rows="3"></textarea>
+                </div>
 
-                    <div class="container text-center mt-2" id="eqAddButton">
-                        <button onclick="addNewEqField()" class="btn btn-primary btn-sm">Add</button>
-                    </div>
+                <div class="container text-center mt-2" id="eqAddButton">
+                    <button onclick="addNewEqField()" class="btn btn-primary btn-sm">Add</button>
+                </div>
+            </div> <!-- Missing closing tag -->
+
+            <div class="container text-center mt-3">
+                <button onclick="generateCV()" class="btn btn-primary btn-lg padding-bottom">Generate CV</button>
             </div>
         </div>
-        <div class="container text-center mt-3">
-            <button class="btn btn-primary btn-lg">Generate CV</button>
-        </div>
     </div>
-    <!-- Added function direclty into index.html because the reference was not working properly-->
-        <script>
-            function addNewWeField() {
-                let newNode = document.createElement('textarea');
-                newNode.classList.add('form-control');
-                newNode.classList.add('weField');
-                newNode.classList.add("mt-2");
-                newNode.setAttribute("rows", 3);
-                newNode.setAttribute('placeholder', 'Text Here')
-
-                let weAddButtonOb = document.getElementById('weAddButton');
-
-                weAddButtonOb.before(newNode);
-            }</script>
-
-        <script>
-            function addNewEqField() {
-                let newNode = document.createElement('textarea');
-                newNode.classList.add('form-control');
-                newNode.classList.add('eqField');
-                newNode.classList.add("mt-2");
-                newNode.setAttribute("rows", 3);
-                newNode.setAttribute('placeholder', 'Text Here')
-
-                let eqAddButtonOb = document.getElementById('eqAddButton');
-
-                eqAddButtonOb.before(newNode);
-            }</script>
-
 <!--CV Template-->
 </div>
 
 
     <div class="container" id="cv-template">
     <div class=" row">
-        <div class="col-md-4">
+        <div class="col-md-4 text-center py-5 background">
             <!--First Column-->
 
-            <img src="https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg" alt="" class="img-fluid myimg" />
+            <img src="https://st.depositphotos.com/1052233/2885/v/600/depositphotos_28850541-stock-illustration-male-default-profile-picture.jpg" alt="" class="img-fluid myimg" id="imgTemplate" />
 
+            <div class="container">
+                <p id="nameT1">John Many</p>
+                <p id="contactT">(386) 858-8555</p>
+                <p id="addressT">North Carolina Road, 512 North Carolina, 11111</p>
+
+                <hr />
+
+                <p><a id="fbT" href="#1">https://www.linkedin.com/in/john-many-261b04196/</a></p>
+                <p><a id="instaT" href="#1">https://www.linkedin.com/in/john-many-261b04196/</a></p>
+                <p><a id="linkedT" href="#1">https://www.linkedin.com/in/john-many-261b04196/</a></p>
+            </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 py-5">
             <!--Second Column-->
+            <h1 id="nameT2" class="text-center" style="font-weight: 980;">John Many</h1>
+
+            <!--Objective Card-->
+            <div class="card mt-4">
+                <div class="card-header background">
+                    <h3>Objectives</h3>
+                </div>
+                <div class="card-body">
+                        <p id="objectiveT">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit ut tortor pretium viverra suspendisse potenti. Ornare massa eget egestas purus viverra. Cursus metus aliquam eleifend mi in. Tellus at urna condimentum mattis pellentesque id. Risus pretium quam vulputate dignissim suspendisse in est. Sagittis id consectetur purus ut faucibus pulvinar. Dui faucibus in ornare quam viverra. Netus et malesuada fames ac turpis. Enim nunc faucibus a pellentesque sit amet. Sagittis eu volutpat odio facilisis. Turpis egestas integer eget aliquet. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Ut aliquam purus sit amet luctus venenatis lectus. Pulvinar mattis nunc sed blandit libero volutpat sed cras ornare. Congue nisi vitae suscipit tellus mauris. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant. Fermentum leo vel orci porta. Gravida quis blandit turpis cursus in.</p>
+                </div>
+            </div>
+            
+            <!--Work Card-->
+            <div class="card mt-4">
+                <div class="card-header background">
+                    <h3>Work Experience</h3>
+                </div>
+                <div class="card-body">
+                    <ul id="weT">
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                    </ul>
+                </div>
+            </div>
+            <!--School Card-->
+            <div class="card mt-4">
+                <div class="card-header background">
+                    <h3>Academic Experience</h3>
+                </div>
+                <div class="card-body">
+                    <ul id="aqT">
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container mt-3 text-center">
+                <button onclick="printCV()" class="btn background">PRINT CV</button>
+            </div>
         </div>
     </div>
 </div>
@@ -194,6 +208,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous">
     </script>
+    <script src="~/js/script.js"></script>
 
     </body>
 </html>
